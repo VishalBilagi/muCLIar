@@ -4,16 +4,12 @@ import os
 import pickle
 import sys
 from colorama import Fore
-from selenium.webdriver.chrome.options import Options
 import itertools
-from selenium.webdriver.common.by import By
 import threading
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from pyvirtualdisplay import Display
-from getkey import getkey
+from getkey import getkey, keys
 
 quitTitle = False
 
@@ -65,11 +61,13 @@ class Search():
         next5 = {}
         for i in range(2,7):
             link = self.driver.find_element_by_xpath(
-                r'/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[2]/div/ytd-playlist-panel-renderer/div/div[2]/ytd-playlist-panel-video-renderer['
-                +str(i)+r']/a').get_attribute('href')
+                r'/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div['
+                r'2]/div/ytd-playlist-panel-renderer/div/div[2]/ytd-playlist-panel-video-renderer['
+                + str(i) + r']/a').get_attribute('href')
             title = self.driver.find_element_by_xpath(
-                r'/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[2]/div/ytd-playlist-panel-renderer/div/div[2]/ytd-playlist-panel-video-renderer['
-                +str(i)+r']/a/div/div[2]/h4/span').text
+                r'/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div['
+                r'2]/div/ytd-playlist-panel-renderer/div/div[2]/ytd-playlist-panel-video-renderer['
+                + str(i) + r']/a/div/div[2]/h4/span').text
             next5[link]=title
         return next5
 
@@ -125,9 +123,10 @@ class Search():
 
             while True:
                 print(Fore.LIGHTGREEN_EX +
-                    "\nNew song: s\nPause: o\nNext song: p\nPrev song: i\nQuit: q\n>" + Fore.RESET)
+                    "\nNew song: s\nPause: o\nNext song: p\nPrev song: i\nQuit: q\nSeek 5 seconds backward: ←\n"
+                      +"Seek 5 seconds forward: →\nVolume up: ↑\nVolume down: ↓\nMute: m\n" + Fore.RESET)
                 val = getkey()
-                self.action(val,display=self.display)
+                self.command(val)
 
         except KeyboardInterrupt:
 
@@ -151,7 +150,13 @@ class Search():
 
         # sys.stdout.write('\rDone!\n')
 
-    def action(self, val,display):
+    def action(self, key_signal):
+        self.actions = ActionChains(self.driver)
+        self.actions.send_keys(key_signal)
+        self.actions.perform()
+        self.actions = None
+
+    def command(self, val):
         self.actions = ActionChains(self.driver)
         if val.lower() == "s":
             # display.stop()
@@ -165,26 +170,36 @@ class Search():
             
 
         elif val.lower() == 'o':
-            self.actions.send_keys('k')
-            self.actions.perform()
-            self.actions = None
+            self.action('k')
 
         elif val.lower() == 'p':
-            self.actions.send_keys(Keys.LEFT_SHIFT + 'N')
-            self.actions.perform()
-            self.actions = None
+            self.action(Keys.LEFT_SHIFT + 'N')
 
         elif val.lower() == 'i':
-            self.actions.send_keys(Keys.LEFT_SHIFT + 'P')
-            self.actions.perform()
-            self.actions = None
-        
+            self.action(Keys.LEFT_SHIFT + 'P')
+
+        elif val.lower() == 'm':
+            self.action('m')
+
+
+        elif val == keys.LEFT:
+            self.action(Keys.ARROW_LEFT)
+
+        elif val == keys.RIGHT:
+            self.action(Keys.ARROW_RIGHT)
+
+        elif val == keys.UP:
+            self.action(Keys.ARROW_UP)
+
+        elif val == keys.DOWN:
+            self.action(Keys.ARROW_DOWN)
+
         elif val.lower() == "q":
             self.driver.quit()
             global quitTitle
             quitTitle = True
             print(Fore.WHITE + "\nQuitting...")
-            display.stop()
+            self.display.stop()
             os._exit(1)
 
         else:
