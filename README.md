@@ -1,7 +1,9 @@
 # muCLIar <img src="https://i.ibb.co/641Jhrt/MUCLEAR2-001.png" alt="hydrogen animated logo" height="70px" align="right" />
 
-[![Development Stage](https://img.shields.io/badge/Development-v.1.0.0-blue)]() [![License](https://img.shields.io/github/license/aayush1205/muCLIar)](https://github.com/aayush1205/muCLIar/blob/master/LICENSE) [![Issues](https://img.shields.io/github/issues/aayush1205/muCLIar)](https://github.com/aayush1205/muCLIar/issues)
+[![Development Stage](https://img.shields.io/badge/Development-v.1.0.1-blue)]() [![License](https://img.shields.io/github/license/aayush1205/muCLIar)](https://github.com/aayush1205/muCLIar/blob/master/LICENSE) [![Issues](https://img.shields.io/github/issues/aayush1205/muCLIar)]() [![Stars](https://img.shields.io/github/stars/aayush1205/muCLIar?style=social)]()
 
+
+**Imp: Multiple new features are added. Do consider uninstalling once and installing the fresh version.**
 
 Coffee, Music and Code! What else could we developers ask for?
 
@@ -17,9 +19,8 @@ But then, long gone are days of slow internet and locally stored songs. **muCLIa
 <br>
 
 ## Note
-1. Multiple new features are added. Do consider uninstalling once and installing the fresh version.
-2. **muCLIar** is in **active development**. If you land into unprecedented errors, please feel free to open an issue. We would work on it as soon as possible. 
-3. We are still working on finding a workaround to let you login to your YouTube account so that your "favourite songs playlist" starts playing after the current song finishes. We did have the login functionality before, but turns out, Google is now rejecting automated login.
+1. **muCLIar** is in **active development**. If you land into unprecedented errors, please feel free to open an issue. We would work on it as soon as possible. 
+2. We are still working on finding a workaround to let you login to your YouTube account so that your "favourite songs playlist" starts playing after the current song finishes. We did have the login functionality before, but turns out, Google is now rejecting automated login.
 
 ## Features
 
