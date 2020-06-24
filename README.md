@@ -3,7 +3,7 @@
 [![Development Stage](https://img.shields.io/badge/Development-v.1.0.1-blue)]() [![License](https://img.shields.io/github/license/aayush1205/muCLIar)](https://github.com/aayush1205/muCLIar/blob/master/LICENSE) [![Issues](https://img.shields.io/github/issues/aayush1205/muCLIar)]() [![Stars](https://img.shields.io/github/stars/aayush1205/muCLIar?style=social)]()
 
 
-**Imp: Multiple new features are added. Do consider uninstalling once and installing the fresh version.**
+**Imp: Multiple new features were added. Do consider uninstalling once and installing the fresh version.**
 
 Coffee, Music and Code! What else could we developers ask for?
 
@@ -32,10 +32,13 @@ But then, long gone are days of slow internet and locally stored songs. **muCLIa
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+### Supported Distributions:
+1. [Ubuntu](https://ubuntu.com/)
+2. [Arch Linux](https://www.archlinux.org/)
+
 ### Prerequisites
 1. [Conda](https://docs.conda.io/en/latest/miniconda.html)
-2. [Ubuntu](https://ubuntu.com/)(Actively testing on some other distros)
-3. [Google Chrome](https://www.google.com/chrome/?brand=CHBD&gclid=CjwKCAiA1fnxBRBBEiwAVUouUvzpOpZoXXgKyvMqvzo2yqnAOjBgWZXuuIWLdlD4libk5FFPlI0urhoC_2sQAvD_BwE&gclsrc=aw.ds)
+2. [Google Chrome](https://www.google.com/chrome/?brand=CHBD&gclid=CjwKCAiA1fnxBRBBEiwAVUouUvzpOpZoXXgKyvMqvzo2yqnAOjBgWZXuuIWLdlD4libk5FFPlI0urhoC_2sQAvD_BwE&gclsrc=aw.ds)
 
 ### Installing
 The repository has the installer script. This is what you need to do to get muCLIar running on your system:
@@ -53,18 +56,21 @@ cd muCLIar or cd /path/to/muCLIar
 ```
 
 3. Run the installer: 
+
+
+a. For Ubuntu:
 ```
 ./env.sh
 ```
-4. You might encounter a XVFB display error. Just to ensure it doesn't happen, do the following: 
+b. For Arch Linux(might work in arch-based distros too: Manjaro, Velt etc.):
 
 ```
-sudo apt-get update -y
+./arch_install.sh
 ```
 
-```
-sudo apt-get install -y xvfb
-```
+~~4. You might encounter a XVFB display error. Just to ensure it doesn't happen, do the following:~~
+
+**UPD**: Player uses PyVirtualDisplay now.
 
 ### Uninstalling
 
@@ -82,15 +88,10 @@ Use the uninstaller script. It will handle all the deletions and script removal.
 ```
 mu -s "name of the song"
 ```
-
-2. To quit the player or to change the song to a new one, just generate a keyboard interrupt on the terminal:
-
-```
-Ctrl + C
-```
+**UPD** : The player shows the controller on the terminal. 
 
 ## Built With
-* [Selenium](https://selenium.dev/) - Automating Tool
+* [Selenium](https://selenium.dev/) - Automation Tool
 * [ChromeDriver](https://chromedriver.chromium.org/) - Web Driver
 
 <br>

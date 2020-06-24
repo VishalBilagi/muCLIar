@@ -95,9 +95,10 @@ class Player:
         """
         try:
             self.driver.find_element_by_class_name("style-scope ytd-compact-radio-renderer").click()
+            return True
         except NoSuchElementException:
             return False
-        return True
+        
 
     def get_playlist(self):
         """
@@ -166,7 +167,7 @@ class Player:
 
     def volume_down(self):
         """
-        Volume up
+        Volume down
         :return:
         """
         key_signal = Keys.ARROW_DOWN
@@ -174,7 +175,7 @@ class Player:
 
     def mute(self):
         """
-        Volume up
+        Mute player
         :return:
         """
         key_signal = 'm'
@@ -182,7 +183,7 @@ class Player:
 
     def forward(self):
         """
-        Volume up
+        Seek 5 seconds forward
         :return:
         """
         key_signal = Keys.ARROW_RIGHT
@@ -190,7 +191,7 @@ class Player:
 
     def backward(self):
         """
-        Volume up
+        Seek 5 seconds back
         :return:
         """
         key_signal = Keys.ARROW_LEFT
