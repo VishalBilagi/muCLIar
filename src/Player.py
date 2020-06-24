@@ -1,4 +1,5 @@
-from ChromeDriver import create_driver
+import ChromeDriver
+import FirefoxDriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
@@ -11,11 +12,15 @@ import pickle
 
 class Player:
 
-    def __init__(self):
+    def __init__(self, driver_name):
         self.actions = None
-        self.display = Display(visible=0, size=(1080, 1920))
-        self.display.start()
-        self.driver = create_driver()
+        if(driver_name == 'chrome' or driver_name=='None'):
+            self.display = Display(visible=0, size=(1080, 1920))
+            self.display.start()
+            self.driver = ChromeDriver.create_driver()
+        elif(driver_name == 'firefox'):
+            self.driver = FirefoxDriver.create_driver()
+            
         self.driver.get("https://youtube.com")
         self.url = "https://youtube.com"
         self.has_playlist = False
@@ -202,6 +207,7 @@ class Player:
         Quits application
         :return:
         """
-        self.display.stop()
+        if(self.driver.name == 'chrome'):
+            self.display.stop()
         self.driver.quit()
 

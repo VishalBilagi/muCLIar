@@ -13,9 +13,6 @@ QUIT_SEARCH = False
 QUIT_DISPLAY = False
 LINE_BUFFER = 0
 
-# Launches chrome with YouTube landing page
-yt_music = Player()
-
 
 def delete_lines(n=1):
 	for _ in range(n):
@@ -81,7 +78,7 @@ def parse_args():
 	parser = argparse.ArgumentParser(description='muCLIar - Music from CLI')
 	parser.add_argument('-s', '--song', type=str, help='Song name', required=True)
 	parser.add_argument('-c', '--config', action='store_true')
-
+	parser.add_argument('-d','--driver', type=str, help='Webdriver to use\nchrome or firefox')
 	return parser.parse_args()
 
 
@@ -97,6 +94,8 @@ def application(args):
 			print('Using stored credentials.')
 		else:
 			print('Logged in.')
+
+	
 
 	inf = threading.Thread(target=display_info)
 	inf.start()
@@ -155,5 +154,9 @@ def application(args):
 if __name__ == "__main__":
 
 	arguments = parse_args()
-
+	# Launches a browser with YouTube landing page
+	if(arguments.driver == None):
+		yt_music = Player(driver_name='chrome')
+	else:
+		yt_music = Player(driver_name=arguments.driver)
 	application(arguments)
